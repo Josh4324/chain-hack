@@ -7,21 +7,37 @@
 const hre = require("hardhat");
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
+  /*
+  A ContractFactory in ethers.js is an abstraction used to deploy new smart contracts,
+  so whitelistContract here is a factory for instances of our Whitelist contract.
+  */
+  const nftContract = await ethers.getContractFactory("Payment");
 
-  const lockedAmount = hre.ethers.utils.parseEther("0.001");
-
-  const Lock = await hre.ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
-
-  await lock.deployed();
-
-  console.log(
-    `Lock with ${ethers.utils.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`
+  // here we deploy the contract
+  const deployedNftContract = await nftContract.deploy(
+    "0xCF59aC8b973A5B1fF452f2d1654899F97edecdFF"
   );
+
+  // Wait for it to finish deploying
+  await deployedNftContract.deployed();
+
+  // print the address of the deployed contract
+  console.log("NFT Contract Address:", deployedNftContract.address);
+
+  console.log("Sleeping.....");
+  // Wait for etherscan to notice that the contract has been deployed
+  await sleep(30000);
+
+  // Verify the contract after deploying
+  await hre.run("verify:verify", {
+    address: deployedNftContract.address,
+    constructorArguments: ["0xCF59aC8b973A5B1fF452f2d1654899F97edecdFF"],
+    contract: "contracts/Pay.sol:Payment",
+  });
+
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 }
 
 // We recommend this pattern to be able to use async/await everywhere
