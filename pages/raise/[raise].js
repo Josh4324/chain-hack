@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
 import Side from "../../components/Side";

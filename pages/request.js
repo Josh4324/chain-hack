@@ -12,7 +12,7 @@ import { GET_REQUEST_SENT, GET_REQUEST_RECEIVED } from "../queries";
 import { subgraphQuery } from "../utils";
 import { cons } from "fp-ts/lib/NonEmptyArray2v";
 
-export default function request() {
+export default function Request() {
   const amountRef = useRef();
   const userRef = useRef();
 
@@ -217,7 +217,7 @@ export default function request() {
                 </tr>
                 {rec.map((item) => {
                   return (
-                    <tr>
+                    <tr key={item.id}>
                       <td>{item.id}</td>
                       <td>{Number(item.amount / 10 ** 18).toFixed(5)} matic</td>
                       <td>{item.user}</td>
@@ -269,7 +269,7 @@ export default function request() {
                 </tr>
                 {sent.map((item) => {
                   return (
-                    <tr>
+                    <tr key={item.id}>
                       <td>{item.id}</td>
                       <td>{Number(item.amount / 10 ** 18).toFixed(5)} matic</td>
                       <td>{item.user}</td>

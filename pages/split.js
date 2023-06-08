@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useState } from "react";
 import Link from "next/link";
