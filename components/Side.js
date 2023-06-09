@@ -37,22 +37,6 @@ export default function Side() {
             <div className="side-text-inner">Send</div>
           </div>
         </Link>
-
-        <Link href="/split">
-          <div className="side-text">
-            <div className="side-text-inner">Split</div>
-          </div>
-        </Link>
-        <Link href="/escrow">
-          <div className="side-text">
-            <div className="side-text-inner">Escrow</div>
-          </div>
-        </Link>
-        <Link href="/dlot">
-          <div className="side-text">
-            <div className="side-text-inner">Dlottery</div>
-          </div>
-        </Link>
       </div>
     </div>
   );
