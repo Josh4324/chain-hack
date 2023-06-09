@@ -210,7 +210,7 @@ export default function payment() {
                       <td>{item.status === true ? "Paid" : "Pending"}</td>
                       <td>
                         <CopyToClipboard
-                          text={`http://localhost:3000/request/${item.id}`}
+                          text={`https://de-pay.netlify.app/request/${item.id}`}
                         >
                           <button>Copy Payment Link</button>
                         </CopyToClipboard>
@@ -244,7 +244,7 @@ export default function payment() {
                       <td>{item.status === true ? "Paid" : "Pending"}</td>
                       <td>
                         <CopyToClipboard
-                          text={`http://localhost:3000/raise/${item.id}
+                          text={`https://de-pay.netlify.app/raise/${item.id}
                           `}
                         >
                           <button>Copy Payment Link</button>
